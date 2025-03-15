@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepali Momo Cafe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-gray-100 text-black font-sans">
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto flex justify-between items-center p-4">
+            <div class="text-xl font-bold text-black !important">Nepali Momo Cafe</div>
+            <ul class="flex space-x-4">
+                <li><a href="#home" class="hover:text-gray-500">Home</a></li>
+                <li><a href="#menu" class="hover:text-gray-500">Menu</a></li>
+                <li><a href="#about" class="hover:text-gray-500">About</a></li>
+                <li><a href="#contact" class="hover:text-gray-500">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="relative h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('banner2.jpg');">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <h1 class="relative text-white text-5xl font-bold text-center">Welcome to Nepali Momo Cafe!</h1>
+    </section>    
+
+    <section id="menu" class="container mx-auto py-12">
+        <h2 class="text-3xl font-bold text-center mb-6">Our Menu</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Steamed Veggie Momo - $7.00</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Steamed Chicken Momo - $8.00</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Steamed Beef Momo - $9.00</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Fried Veggie Momo - $8.00</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Fried Chicken Momo - $9.00</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Fried Beef Momo - $10.00</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Chilli Veggie Momo - $9.00</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Chilli Chicken Momo - $9.00</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Chilli Beef Momo - $10.00</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Soup Veggie Momo - $8.00</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Soup Chicken Momo - $9.00</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Soup Beef Momo - $10.00</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Bhatmas Sadheko- $6</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Sel Roti- $1.50</div>
+            <div class="p-6 bg-white shadow-md flex items-center justify-center">Hot Coffee- $2.00</div>
+        </div>
+    </section>
+
+    <section id="gallery" class="container mx-auto py-12">
+        <h2 class="text-3xl font-bold text-center mb-6">Gallery</h2>
+    
+        <div class="relative w-full max-w-3xl mx-auto">
+            <div class="flex overflow-hidden w-full">
+                <div class="flex w-full transition-transform duration-700 ease-in-out" id="slider-images">
+                    <img src="item1.jpg" class="w-full h-100 object-cover flex-shrink-0" alt="Food item 1">
+                    <img src="item2.jpg" class="w-full h-100 object-cover flex-shrink-0" alt="Food item 2">
+                    <img src="item3.jpg" class="w-full h-100 object-cover flex-shrink-0" alt="Food item 3">
+                    <img src="item4.jpg" class="w-full h-100 object-cover flex-shrink-0" alt="Food item 4">
+                    <img src="item5.jpg" class="w-full h-100 object-cover flex-shrink-0" alt="Food item 5">
+                    <img src="item6.jpg" class="w-full h-100 object-cover flex-shrink-0" alt="Food item 6">
+                </div>
+            </div>
+    
+            <div class="absolute top-1/2 left-0 transform -translate-y-1/2 z-10">
+                <button id="prev-btn" class="bg-gray-800 text-white px-3 py-2 rounded-l">❮</button>
+            </div>
+            <div class="absolute top-1/2 right-0 transform -translate-y-1/2 z-10">
+                <button id="next-btn" class="bg-gray-800 text-white px-3 py-2 rounded-r">❯</button>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const sliderImages = document.getElementById("slider-images");
+        const totalImages = document.querySelectorAll("#slider-images img").length;
+        let currentIndex = 0;
+    
+        nextBtn.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateSliderPosition();
+        });
+    
+        prevBtn.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            updateSliderPosition();
+        });
+    
+        function updateSliderPosition() {
+            const offset = -currentIndex * 100;
+            sliderImages.style.transform = `translateX(${offset}%)`;
+        }
+    </script>         
+
+    <section id="about" class="container mx-auto py-12">
+        <h2 class="text-3xl font-bold text-center mb-6">Who we are?</h2>
+        <p class="text-center max-w-2xl mx-auto">Nepali Momo Cafe is a small restaurant that serves Nepalese and Himalyan cuisine. We offer a variety of options, but we are most known for our momos. 
+            We make all of our food right here, and we pride ourselves in using authentic spices and ingredients. We hope to spread these foods to all cultures and offer a rich yet unique dining experience.</p>
+    </section>
+
+    <section id="contact" class="container mx-auto py-12">
+        <h2 class="text-3xl font-bold text-center mb-6">Contact Us</h2>
+        <form class="max-w-lg mx-auto bg-white p-6 shadow-md rounded">
+            <input type="text" placeholder="Name" required class="w-full p-2 border mb-4">
+            <input type="email" placeholder="Email" required class="w-full p-2 border mb-4">
+            <textarea placeholder="Message" required class="w-full p-2 border mb-4"></textarea>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Send</button>
+        </form>
+    
+        <div class="mt-12">
+            <h3 class="text-2xl font-bold text-center mb-6">Hungry? Visit us here:</h3>
+            <div class="w-full h-64">
+                <!-- Google Maps Embed iframe -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.671851937993!2d-73.89085310000002!3d40.74724560000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25f91c92d48f1%3A0x6df870c4c15046e2!2sNepali%20Momo%20Cafe!5e0!3m2!1sen!2sus!4v1742005375508!5m2!1sen!2sus" 
+                        width="750" height="75%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>    
+
+    <footer class="bg-gray-800 text-white text-center p-6">
+        <p>&copy; 2025 Nepali Momo Cafe | Follow us on social media!</p>
+
+        <div class="mt-4">
+            <p class="text-lg">Call us: <a href="tel: (347) 738-4199" class="text-white hover:text-gray-400">+1 (123) 456-7890</a></p>
+        </div>
+    
+        <div class="flex justify-center space-x-6 mt-4">
+            <a href="https://www.facebook.com/profile.php?id=61557402720149#" target="_blank" class="text-white hover:text-gray-400">
+                <i class="fab fa-facebook"></i> Facebook
+            </a>
+            <a href="https://www.yelp.com/biz/nepali-momo-cafe-queens" target="_blank" class="text-white hover:text-gray-400">
+                <i class="fab fa-yelp"></i> Yelp
+            </a>
+        </div>
+
+        <div class="mt-4">
+            <h3 class="text-lg font-semibold">Business Hours</h3>
+            <ul class="list-none">
+                <li>Monday - Saturday: 8:00 AM - 11:00 PM</li>
+                <li>Sunday: 8:00 AM - 10:00 PM</li>
+            </ul>
+        </div>
+    </footer>
+    
+</body>
+</html>
